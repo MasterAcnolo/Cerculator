@@ -1,71 +1,39 @@
+const input = document.getElementById('input');
+const outputbox = document.querySelector('.outputbox') // on associe XX 'outputbox' à classe .outputbox du css
 
-// //nombre= prompt("Veuillez entrez une valeure")
+function GetValue() {
+    const value = Math.abs(parseFloat(input.value));
 
-// document.getElementById("Output").innerHTML = (getCircumference(input) + " Unités D'Aire")
-
-// function GetValue() {
-
-//     var input = document.getElementById("number").value;
-
-//     // Afficher La valeur
-//     input.addEventListener('input', function() {
-
-//         console.log("Changement détecté:", input.value); 
-        
-//     });
-
-// }
-
-
-
-//Chargement = Vide
-// Si on modifie la box ca execute GetCircumference avec comme argument le contenu de la box 
-
-
-
-const input = document.getElementById('input')
-
-function GetValue(){
-
-    const value = parseFloat(input.value);
-
-    if(!isNaN(value)) {
-
+    if (!isNaN(value)) {
         const resultatperim = getCircumference(value);
         const resultataire = getArea(value);
 
-        // console.log("Valeur actuelle :" , input.value);
-        // console.log(getCircumference(value));
+        if (value !== 0) {
+            document.getElementById("Perimeter").innerHTML =
+                `Pour un rayon de ${value}, le périmètre est de ${resultatperim.toFixed(3)} unités`;
 
-        
+            document.getElementById("Area").innerHTML =
+                `Pour un rayon de ${value}, l'aire est de ${resultataire.toFixed(3)} unités d'aire`;
 
-        if(value != 0){
-
-            document.getElementById("Perimeter").innerHTML = ("Pour un rayon de " + value + ", le rayon est de " + resultatperim.toFixed(3) + " unités")
-
-            document.getElementById("Area").innerHTML = ("Pour un rayon de " + value +  ", l'aire est de " + resultataire.toFixed(3) + " unités d'aire")
-        } else
-            document.getElementById("Perimeter", "Area").innerHTML= ''
-        
+            outputbox.style.display ="flex"
+        } else {
+            document.getElementById("Perimeter").innerHTML = '';
+            document.getElementById("Area").innerHTML = '';
+            outputbox.style.display = "none"
+        }
     } else {
-
-        // console.log("Erreur, veuillez entrez une valeure numérique")
-
+        outputbox.style.display = "none" // On écrit sur la valeure de la classe outputbox, son style, et la valeure de
+        document.getElementById("Perimeter").innerHTML = '';
+        document.getElementById("Area").innerHTML = '';
     }
-
-    
 }
 
 input.addEventListener('input', GetValue);
 
-function getCircumference(radius){
-
-    
-    // console.log("Appel de la fonction getCircumference")
+function getCircumference(radius) {
     return 2 * Math.PI * radius;
-    
 }
 
-function getArea(radius){
-    return 2 * Math.PI * (radius**2);
+function getArea(radius) {
+    return Math.PI * (radius ** 2);
 }
