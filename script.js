@@ -12,7 +12,10 @@ function GetValue() {
             document.getElementById("Perimeter").innerHTML =
                 `Pour un rayon de ${value}, le périmètre est de ${resultatperim.toFixed(3)} unités`;
 
-            document.getElementById("Area").innerHTML =
+      
+
+
+      document.getElementById("Area").innerHTML =
                 `Pour un rayon de ${value}, l'aire est de ${resultataire.toFixed(3)} unités d'aire`;
 
             outputbox.style.display ="flex"
